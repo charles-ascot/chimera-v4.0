@@ -32,6 +32,7 @@ jobs:
           region: ${{ secrets.GCP_REGION }}
           source: ./backend
           project_id: ${{ secrets.GCP_PROJECT_ID }}
+          flags: --cpu=4 --memory=16Gi --cpu-boost
           env_vars: |
             ENVIRONMENT=prod
             DATASET_URI=${{ secrets.DATASET_URI }}
