@@ -651,6 +651,7 @@ class ConductorAgent:
     def get_system_status(self) -> Dict[str, Any]:
         """Get overall system status"""
         return {
+            "status": "healthy" if self.status == AgentStatus.READY else "unhealthy",
             "conductor_status": self.status.value,
             "uptime_seconds": (datetime.utcnow() - self.start_time).total_seconds() if self.start_time else 0,
             "agents": {
