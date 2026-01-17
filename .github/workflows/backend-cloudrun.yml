@@ -30,7 +30,7 @@ jobs:
           region: ${{ secrets.GCP_REGION }}
           source: ./backend
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          flags: --cpu=4 --memory=16Gi --cpu-boost
+          flags: --cpu=4 --memory=16Gi --cpu-boost --allow-unauthenticated
           env_vars: |
             ENVIRONMENT=production
             GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}
