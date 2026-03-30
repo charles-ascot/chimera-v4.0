@@ -23,12 +23,10 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "chimera-v4-secret-key-change-in-production"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
     
-    # CORS
+    # CORS — set ALLOWED_ORIGINS env var in Cloud Run as comma-separated list
     CORS_ORIGINS: List[str] = [
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "https://chimera4.thync.online"
-    ]
+        o.strip() for o in os.environ.get("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+    ] + ["http://localhost:5173", "http://localhost:3000"]
     
     # Google Cloud
     GCP_PROJECT_ID: str = "chimera-v4"

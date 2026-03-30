@@ -72,15 +72,10 @@ app = FastAPI(
 )
 
 # CORS Configuration
+_allowed_origins = os.environ.get("ALLOWED_ORIGINS", "http://localhost:5173")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "https://chimera4.thync.online",
-        "https://chimera-v4.pages.dev",
-        "*"  # Allow all for development
-    ],
+    allow_origins=[o.strip() for o in _allowed_origins.split(",")] + ["https://chimera-v4.pages.dev", "http://localhost:5173", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
